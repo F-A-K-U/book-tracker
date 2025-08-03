@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+
+/* Variables CSS para glassmorphism */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-backdrop: blur(10px);
+}
+
+/* Estilos base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 64px 0 rgba(31, 38, 135, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Animaciones personalizadas */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Efectos de entrada */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efectos de hover para botones */
+.btn-glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 text-white font-medium py-3 px-6 rounded-2xl transition-all duration-300;
+}
+
+.btn-glass:hover {
+  @apply bg-white/20 shadow-lg transform scale-105;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+.btn-success {
+  @apply bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+.btn-danger {
+  @apply bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+/* Inputs con glassmorphism */
+.input-glass {
+  @apply bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/50 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-300;
+}
+
+.input-glass:focus {
+  @apply bg-white/15 shadow-lg;
+}
+
+/* Cards con efectos */
+.card-glass {
+  @apply bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl transition-all duration-300;
+}
+
+.card-glass:hover {
+  @apply transform scale-[1.02];
+}
+
+/* Progress bars con gradientes */
+.progress-bar {
+  @apply h-3 bg-white/20 rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full rounded-full transition-all duration-500 ease-out;
+}
+
+/* Utilidades para mood colors */
+.mood-reading {
+  @apply bg-gradient-to-br from-blue-500/20 to-cyan-500/20;
+}
+
+.mood-completed {
+  @apply bg-gradient-to-br from-green-500/20 to-emerald-500/20;
+}
+
+.mood-progress {
+  @apply bg-gradient-to-br from-purple-500/20 to-pink-500/20;
+}
+
+.mood-stats {
+  @apply bg-gradient-to-br from-orange-500/20 to-yellow-500/20;
+}
+
+.mood-books {
+  @apply bg-gradient-to-br from-indigo-500/20 to-blue-500/20;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible para navegación con teclado */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-purple-500/50 ring-offset-2 ring-offset-transparent;
+}
